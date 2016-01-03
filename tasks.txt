@@ -1,0 +1,4 @@
+tasks:
+1. Finish progrem sacning funcrion
+2. How to determine profile
+3. start writing install function
