@@ -6,7 +6,7 @@ import os
 def main_window():
     window = Tk()
     window.geometry("500x500")
-    window.iconbitmap(r"C:\Users\ofer\Desktop\github files\project\Alien_robot.ico")
+    window.iconbitmap(os.path.abspath(os.curdir+"\Assets\Alien_robot.ico"))#r"C:\Users\ofer\Desktop\github files\project\Alien_robot.ico")
     window.wm_title("Personal Helper!")
     l = Label(text="Personal helper!")
     b = Button(window, text="start scanning for programs", command=scan_computer_programs)
@@ -16,7 +16,7 @@ def main_window():
 
 def scan_computer_programs():
     privs = 'asadmin'
-    filename = "programs_finder.py"
+    filename = "Data/programs_finder.py"
     if sys.argv[-1] != privs:
         script = os.path.dirname(filename) + os.path.basename(filename)
         print script
