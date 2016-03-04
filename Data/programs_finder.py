@@ -47,6 +47,8 @@ def main():
     print len(names)
     new_file.close()
     errorLog.close()
+    sys.stdout.write("Done doing this shit\n")
+    sys.stdout.flush()
     sys.exit(0)
 if __name__ == "__main__":
     main()
