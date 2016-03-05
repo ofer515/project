@@ -49,7 +49,7 @@ def main():
     errorLog.close()
     sys.stdout.write("Done doing this shit\n")
     sys.stdout.flush()
-    sys.exit(0)
+    sys.exit(400)
 if __name__ == "__main__":
     main()
 else:

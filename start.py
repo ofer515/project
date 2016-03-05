@@ -4,6 +4,8 @@ import os
 import sys
 import subprocess
 
+process = {}
+games = ["PapersPlease.exe"]
 def main_window():
     main_window = Tk()
     main_window.geometry("500x500")
@@ -15,6 +17,7 @@ def main_window():
     b.pack()
     main_window.mainloop()
 
+
 def scan_computer_programs():
     privs = 'asadmin'
     filename = "Data/programs_finder.py"
@@ -22,16 +25,31 @@ def scan_computer_programs():
         script = os.path.dirname(filename) + os.path.basename(filename)
         params = ' '.join([script] + sys.argv[1:] + [privs])
         try:
+            print "made it"
             shell.ShellExecuteEx(lpVerb='runas', lpFile=sys.executable, lpParameters=params)
         except Exception as e:
             print e
             print "need admin"
 
-def running_programs(main_window):
-    cmd = 'WMIC PROCESS get Caption,Processid,Priority'
+def running_programs(main_window, working):  #working is that the user doesnt want games and such to be reachable
+    cmd = 'WMIC PROCESS get Caption,Processid,Priority,workingsetsize'
     proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    print proc
+    print process.keys()
     for line in proc.stdout:
+        proc_vals = str(line).split(" ")
+        if proc_vals[0] not in process.keys():
+            print proc_vals[0]
+            process[proc_vals[0]] = proc_vals[1:]
+
+    if working:
+        for key in process.keys():
+            #print 'Taskkill /IM ' + key + ' /F'
+            if key in games:
+                print "hi"
+                cmd = 'Taskkill /IM ' + key + ' /F'
+                subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+                process.pop(key)
+
         
 
 
