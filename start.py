@@ -5,16 +5,24 @@ import sys
 import subprocess
 
 process = {}
-games = ["PapersPlease.exe"]
+games = ["PapersPlease.exe", "Steam.exe"]
 def main_window():
     main_window = Tk()
     main_window.geometry("500x500")
     main_window.iconbitmap(os.path.abspath(os.curdir+"\Assets\Alien_robot.ico"))#r"C:\Users\ofer\Desktop\github files\project\Alien_robot.ico")
     main_window.wm_title("Personal Helper!")
     l = Label(text="Personal helper!")
+    CheckVal1 = IntVar()
+    w = Checkbutton(main_window, text = "work", variable = CheckVal1, \
+                 onvalue = 1, offvalue = 0, height=5, \
+                 width = 20)
     b = Button(main_window, text="start scanning for programs", command=scan_computer_programs)
+    c = Button(main_window, text="block all gaming apps", command=running_programs)
     l.pack()
     b.pack()
+    c.pack()
+    w.pack()
+    print CheckVal1
     main_window.mainloop()
 
 
@@ -34,7 +42,6 @@ def scan_computer_programs():
 def running_programs(main_window, working):  #working is that the user doesnt want games and such to be reachable
     cmd = 'WMIC PROCESS get Caption,Processid,Priority,workingsetsize'
     proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    print process.keys()
     for line in proc.stdout:
         proc_vals = str(line).split(" ")
         if proc_vals[0] not in process.keys():
@@ -45,7 +52,7 @@ def running_programs(main_window, working):  #working is that the user doesnt wa
         for key in process.keys():
             #print 'Taskkill /IM ' + key + ' /F'
             if key in games:
-                print "hi"
+                print "hi" , key
                 cmd = 'Taskkill /IM ' + key + ' /F'
                 subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
                 process.pop(key)
