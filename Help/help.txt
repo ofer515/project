@@ -1,0 +1,3 @@
+pip install gi
+pip install wmi
+pip install ttk

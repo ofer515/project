@@ -17,11 +17,11 @@ Regkey: 1455617752_is1
 Regkey: AddressBook
 ********************************************************************************
 
-Display Name: Adobe Flash Player 20 ActiveX
+Display Name: Adobe Flash Player 21 ActiveX
 Regkey: Adobe Flash Player ActiveX
 ********************************************************************************
 
-Display Name: Adobe Flash Player 20 NPAPI
+Display Name: Adobe Flash Player 21 NPAPI
 Regkey: Adobe Flash Player NPAPI
 ********************************************************************************
 
@@ -147,6 +147,10 @@ Regkey: InstallShield Uninstall Information
 Regkey: InstallShield_{01535110-65FB-4437-AF99-6FB40252C06C}
 ********************************************************************************
 
+Display Name: Blade & Soul
+Regkey: InstallShield_{C3F383C1-D050-4A40-843F-8171A6A02C3A}
+********************************************************************************
+
 Display Name: Lichdom: Battlemage
 Regkey: Lichdom: Battlemage_is1
 ********************************************************************************
@@ -188,6 +192,10 @@ Regkey: Naruto Shippuden Ultimate Ninja Storm Revolution_is1
 
 Display Name: NARUTO SHIPPUDEN: Ultimate Ninja STORM 3 Full Burst
 Regkey: NARUTO SHIPPUDEN: Ultimate Ninja STORM 3 Full Burst_is1
+********************************************************************************
+
+Display Name: NCSOFT Game Launcher
+Regkey: NCLauncher_NCWest
 ********************************************************************************
 
 Regkey: Nero - Burning Rom!UninstallKey
@@ -309,6 +317,14 @@ Regkey: Unity
 
 Display Name: Uplay
 Regkey: Uplay
+********************************************************************************
+
+Display Name: Tom Clancy's The Division
+Regkey: Uplay Install 568
+********************************************************************************
+
+Display Name: Tom Clancy's Rainbow Six Siege
+Regkey: Uplay Install 635
 ********************************************************************************
 
 Display Name: VLC media player 2.1.3
@@ -529,7 +545,6 @@ Display Name: @BIOS
 Regkey: {B2DC3F08-2EB2-49A5-AA24-15DFC8B1CB83}
 ********************************************************************************
 
-Display Name: NVIDIA PhysX
 Regkey: {B83FC356-B7C0-441F-8A4D-D71E088E7974}
 ********************************************************************************
 
@@ -539,6 +554,10 @@ Regkey: {BD95A8CD-1D9F-35AD-981A-3E7925026EBB}
 
 Display Name: Microsoft Visual C++ 2015 x86 Additional Runtime - 14.0.23026
 Regkey: {BE960C1C-7BAD-3DE6-8B1A-2616FE532845}
+********************************************************************************
+
+Display Name: Blade & Soul
+Regkey: {C3F383C1-D050-4A40-843F-8171A6A02C3A}
 ********************************************************************************
 
 Display Name: Microsoft Visual C++ 2012 Redistributable (x64) - 11.0.61030
@@ -551,6 +570,10 @@ Regkey: {CEF766E5-6E15-441F-B14A-C44CB168DBE7}
 
 Display Name: Grand Theft Auto V
 Regkey: {E01FA564-2094-4833-8F2F-1FFEC6AFCC46}
+********************************************************************************
+
+Display Name: NVIDIA PhysX
+Regkey: {E10DB5DA-E576-40EA-A7FC-1CB2A7B283A6}
 ********************************************************************************
 
 Display Name: Microsoft Visual C++ 2015 Redistributable (x64) - 14.0.23026

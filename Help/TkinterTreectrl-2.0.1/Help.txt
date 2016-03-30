@@ -1,0 +1,4 @@
+If TKTreectrl requires istalltion:
+1. Run Setup.py
+2. Enter in cmd "python setup.py install"(make sure you are in the correct directory)
+or go to the link 

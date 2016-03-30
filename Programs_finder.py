@@ -9,7 +9,6 @@ from _winreg import (HKEY_LOCAL_MACHINE, KEY_ALL_ACCESS,
 def main():
     new_file = open('programs_list.log', 'w')
     errorLog = open('errors.log', 'w')
-    print "hi"
     r = wmi.Registry()
     result, names = r.EnumKey(hDefKey=HKEY_LOCAL_MACHINE, sSubKeyName=r"Software\Microsoft\Windows\CurrentVersion\Uninstall")
 
@@ -33,7 +32,7 @@ def main():
                 new_file.write('Regkey: ' + subkey + '\n')
 
         except Exception as e:
-            print e+"1"
+            print e
             fp = StringIO.StringIO()
             traceback.print_exc(file=fp)
             errorMessage = fp.getvalue()
@@ -48,9 +47,9 @@ def main():
     new_file.close()
     errorLog.close()
     sys.stdout.write("Done doing this shit\n")
-    sys.stdout.flush()
     sys.exit(400)
+
 if __name__ == "__main__":
     main()
 else:
-    print __name__+"32"
+    print __name__
