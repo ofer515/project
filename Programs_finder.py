@@ -8,11 +8,17 @@ import tkMessageBox
 
 
 def main():
+<<<<<<< HEAD
 
     new_file = open('Data/programs_list.log', 'w')
 
     errorLog = open('Data/errors.log', 'w')
     displies = open('Data/displayList.log', 'w')
+=======
+    new_file = open('programs_list.log', 'w')
+    errorLog = open('errors.log', 'w')
+    displies = open('displayList.log', 'w')
+>>>>>>> origin/master
     r = wmi.Registry()
     result, names = r.EnumKey(hDefKey=HKEY_LOCAL_MACHINE, sSubKeyName=r"Software\Microsoft\Windows\CurrentVersion\Uninstall")
     new_file.write('These subkeys are found under "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall"\n\n')
