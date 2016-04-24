@@ -4,14 +4,17 @@ import wmi
 import sys
 from _winreg import (HKEY_LOCAL_MACHINE, KEY_ALL_ACCESS, 
                      OpenKey, EnumValue, QueryValueEx)
+import tkMessageBox
 
 
 def main():
-    new_file = open('programs_list.log', 'w')
-    errorLog = open('errors.log', 'w')
+
+    new_file = open('Data/programs_list.log', 'w')
+
+    errorLog = open('Data/errors.log', 'w')
+    displies = open('Data/displayList.log', 'w')
     r = wmi.Registry()
     result, names = r.EnumKey(hDefKey=HKEY_LOCAL_MACHINE, sSubKeyName=r"Software\Microsoft\Windows\CurrentVersion\Uninstall")
-
     new_file.write('These subkeys are found under "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall"\n\n')
     errorLog.write("Errors\n\n")
     separator = "*" * 80
@@ -26,6 +29,8 @@ def main():
                 display = str(temp[0])
                 if display is not "":
                     new_file.write('Display Name: ' + display + '\nRegkey: ' + subkey + '\n')
+                    displies.write(display+"\n")
+
                 else:
                     pass
             except:
@@ -46,8 +51,7 @@ def main():
     print len(names)
     new_file.close()
     errorLog.close()
-    sys.stdout.write("Done doing this shit\n")
-    sys.exit(400)
+    tkMessageBox.showinfo("Error", "Done scanning")
 
 if __name__ == "__main__":
     main()
