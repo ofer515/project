@@ -72,8 +72,13 @@ class MainPanel(wx.Panel):
             p = psutil.Process(pid)
             p.terminate()
             self.update("")
+<<<<<<< HEAD
         except Exception as e:
             print "Error: ", e
+=======
+        except Exception, e:
+            print "Error: " + e
+>>>>>>> origin/master
             
     #----------------------------------------------------------------------
     def onSelect(self, event):

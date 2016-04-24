@@ -1,6 +1,10 @@
 
 from Tkinter import *
+<<<<<<< HEAD
 from ttk import Frame, Button, Label, Treeview, Checkbutton, Combobox, Entry
+=======
+from ttk import Frame, Button, Label, Style, Treeview, Scrollbar, Checkbutton
+>>>>>>> origin/master
 import win32com.shell.shell as shell
 import os
 import sys
@@ -17,6 +21,7 @@ import pyautogui
 
 threads = {"procs": "empty"}
 process = {}
+<<<<<<< HEAD
 defults = {"block": "enter to block",
            "boost": "enter to buff priority",
            "degrade": "enter to lower priority",
@@ -35,13 +40,20 @@ for line in music_file:
     music_list[name] = url[:-2]
 music_file.close()
 print type(music_list)
+=======
+working_bans = ["PapersPlease.exe", "Steam.exe", "chrome.exe"]
+system_process =["pythonw.exe", "dllhost.exe", "cmd.exe", "WMIC.exe"]
+>>>>>>> origin/master
 run_cond = True
 columns = ["Process Name",
            "Id",
            "Priority",
            "Usage"]
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 #standart window for my program
 class Window(Frame):
     def __init__(self, parent, window_type):
@@ -57,6 +69,7 @@ class Window(Frame):
         self.parent.title("Personal Helper")
         self.pack(fill=BOTH, expand=True)
 
+<<<<<<< HEAD
         self.columnconfigure(0, weight=1)
         self.columnconfigure(7, weight=1)
         self.columnconfigure(5, pad=10)
@@ -67,6 +80,13 @@ class Window(Frame):
         self.rowconfigure(5, pad=7)
         self.rowconfigure(6, pad=6)
 
+=======
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(3, pad=7)
+        self.rowconfigure(4, weight=1)
+        self.rowconfigure(5, pad=7)
+        self.rowconfigure(6, pad=6)
+>>>>>>> origin/master
 
         lbl = Label(self, text="Windows")
         lbl.grid(sticky=W+N, pady=4, padx=5)
@@ -82,7 +102,16 @@ class Window(Frame):
         check2.grid(row=7, column=1)
 
 
+<<<<<<< HEAD
         ### still not sure
+=======
+        check_val = IntVar()
+        check1 = Checkbutton(self, text="work?(will defuse some processes)", variable=check_val)
+        check1.grid(row=6, column=0)
+
+
+        #area = Gtk.ListStore(str, str, str)
+>>>>>>> origin/master
         area = Treeview(self)
         area['show'] = 'headings'
         area["columns"] = ("one", "two", "three", "four")
@@ -166,12 +195,20 @@ class Window(Frame):
         music_btn_add = Button(self, text="Add", command=lambda: add_music(music_list, self.entry5.get(),self.entry4.get() ,self.entry5, defults["music"]))
         music_btn_add.grid(row=4, column=3)
 
+<<<<<<< HEAD
+=======
+        area.grid(row=1, column=0, columnspan=2, rowspan=4, padx=5, sticky=E + W + S + N)
+>>>>>>> origin/master
 
         abtn = Button(self, text="Activate", command=scan_computer_programs)
         abtn.grid(row=1, column=5, sticky=E)
 
         sbtn = Button(self, text="Stop", command=lambda: stop_running(area, threads["procs"]))
+<<<<<<< HEAD
         sbtn.grid(row=2, column=5, pady=6, sticky=E)
+=======
+        sbtn.grid(row=2, column=3, pady=6)
+>>>>>>> origin/master
 
         cbtn = Button(self, text="Close", command=quit)
         cbtn.grid(row=3, column=5, pady=4, sticky=E)
@@ -182,8 +219,18 @@ class Window(Frame):
         tsbtn = Button(self, text="TaskManager", command=lambda: os.system("TaskManager\pyProcMon.py"))
         tsbtn.grid(row=3, column=5, sticky=E)
 
+<<<<<<< HEAD
         obtn = Button(self, text="start", command=lambda: call_running(area, threads["procs"], check_box))
         obtn.grid(row=6, column=5, sticky=E)
+=======
+        obtn = Button(self, text="OK", command=lambda: call_running(area, threads["procs"],check_val))
+
+        obtn.grid(row=5, column=3)
+>>>>>>> origin/master
+
+    def initUI_err(self):
+        self.parent.title("Personal Helper")
+        self.pack(fill=BOTH, expand=True)
 
 
     def initUI_err(self):
@@ -198,6 +245,7 @@ class Window(Frame):
             self.boost_drop.set("empty")
 
 
+<<<<<<< HEAD
     def update_blocked(self):
         self.block_drop['values'] = working_bans
         try:
@@ -224,6 +272,8 @@ class Window(Frame):
 
 
 
+=======
+>>>>>>> origin/master
 #older version,  might prove useful in the future so I wont remove it yet
 def main1():
     main_window = Tk()
@@ -248,7 +298,11 @@ def main1():
 
 
 def main():
+<<<<<<< HEAD
     root.geometry("700x300+200+200")
+=======
+    root.geometry("450x400+300+300")
+>>>>>>> origin/master
     root.iconbitmap(os.path.abspath(os.curdir + "\Assets\Alien_robot.ico"))
     app = Window(root, "main")
     root.mainloop()
@@ -280,15 +334,24 @@ def stop_running(area, threadP):
     threads["procs"] = "empty"
 
 
+<<<<<<< HEAD
 def call_running(area, thread1, check_val):
+=======
+def call_running(area, thread1,check_val):
+>>>>>>> origin/master
     if thread1 is not "empty":
         tkMessageBox.showinfo("Error", "already up")
     else:
         threads["procs"] = thread.start_new_thread(running_programs, (area, check_val))
 
+<<<<<<< HEAD
 
 #doing what task manager is doing' showing realtime processes
 def running_programs(area, check_box):  # (add working):  #working is that the user doesnt want games and such to be reachable
+=======
+#doing what task manager is doing' showing realtime processes
+def running_programs(area, check):  # (add working):  #working is that the user doesnt want games and such to be reachable
+>>>>>>> origin/master
     global run_cond
     run_cond = True
     while run_cond:
@@ -305,13 +368,18 @@ def running_programs(area, check_box):  # (add working):  #working is that the u
             except Exception as e:
                 print e
 
+<<<<<<< HEAD
 
+=======
+                raw_input("stopped")
+>>>>>>> origin/master
             #proc_vals = str(line).split(" ")
             if proc_vals[0] not in process.keys():
                 print proc_vals[0]
                 process[proc_vals[0]] = proc_vals[1:]
             area.tag_configure('sys', background='light blue')
 
+<<<<<<< HEAD
 
 
 
@@ -354,16 +422,37 @@ def get_pid(name):
 
 #in dev - must choose how to use
 def set_priority(pids, priority=3):
+=======
+        area.delete(*area.get_children())
+
+        #checking if working status is on and defusing processes if necessary
+        if check.get() == 1:
+            for key in process.keys():
+                #print 'Taskkill /IM ' + key + ' /F'
+                if key in working_bans:
+                    print "killing ", key
+                    cmd = 'Taskkill /IM ' + key + ' /F'
+                    subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+                    process.pop(key)
+        time.sleep(20)
+#in dev - must choose how to use
+def setpriority(pid=None,priority=1):
+>>>>>>> origin/master
     """ Set The Priority of a Windows Process.  Priority is a value between 0-5 where
         2 is normal priority.  Default sets the priority of the current
         python process but can take any valid process ID. """
 
+<<<<<<< HEAD
     priority_classes = [win32process.IDLE_PRIORITY_CLASS,
+=======
+    priorityclasses = [win32process.IDLE_PRIORITY_CLASS,
+>>>>>>> origin/master
                        win32process.BELOW_NORMAL_PRIORITY_CLASS,
                        win32process.NORMAL_PRIORITY_CLASS,
                        win32process.ABOVE_NORMAL_PRIORITY_CLASS,
                        win32process.HIGH_PRIORITY_CLASS,
                        win32process.REALTIME_PRIORITY_CLASS]
+<<<<<<< HEAD
 
     for pid in pids:
         handle = win32api.OpenProcess(win32con.PROCESS_ALL_ACCESS, True, pid)
@@ -440,6 +529,12 @@ def save_lists():
         music_file.close()
 
         tkMessageBox.showinfo("Done", "saved all lists")
+=======
+    if pid == None:
+        pid = win32api.GetCurrentProcessId()
+    handle = win32api.OpenProcess(win32con.PROCESS_ALL_ACCESS, True, pid)
+    win32process.SetPriorityClass(handle, priorityclasses[priority])
+>>>>>>> origin/master
 
 
 if __name__ == "__main__":
