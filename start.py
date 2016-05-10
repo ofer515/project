@@ -34,7 +34,7 @@ for line in music_file:
     name, url = line.split(":", 1)  # splits the name and url for the dict
     music_list[name] = url[:-2]
 music_file.close()
-print type(music_list)
+
 run_cond = True
 #old version procmon list headers
 columns = ["Process Name",
