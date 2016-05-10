@@ -21,7 +21,7 @@ defults = {"block": "enter to block",
            "boost": "enter to buff priority",
            "degrade": "enter to lower priority",
            "music": "enter song's name"}
-working_bans = ["PapersPlease.exe", "Steam.exe", "chrome.exe"]
+
 blocks = open("Data\\blocked.log", 'r')
 working_bans = blocks.read().splitlines()
 blocks.close()
@@ -31,11 +31,12 @@ degraded = open("Data\\degraded.log", 'r').read().splitlines()
 music_list = {}
 music_file = open("Data\\music_dic.log")
 for line in music_file:
-    name, url = line.split(":",1)
+    name, url = line.split(":", 1)  # splits the name and url for the dict
     music_list[name] = url[:-2]
 music_file.close()
 print type(music_list)
 run_cond = True
+#old version procmon list headers
 columns = ["Process Name",
            "Id",
            "Priority",
@@ -82,7 +83,7 @@ class Window(Frame):
         check2.grid(row=7, column=1)
 
 
-        ### still not sure
+        ### old version, may be used again later
         area = Treeview(self)
         area['show'] = 'headings'
         area["columns"] = ("one", "two", "three", "four")
@@ -96,8 +97,9 @@ class Window(Frame):
         area.heading("four", text="Usage")
         ###about this part
         #area.grid(row=1, column=0, columnspan=2, rowspan=4, padx=5, sticky=E + W + S + N)
+        #######
 
-        #comboboxes and relevent buttons
+        #comboboxes and relevant buttons
 
         self.block_drop = Combobox(self, postcommand= self.update_blocked)
         self.block_drop['values'] = working_bans
@@ -170,7 +172,7 @@ class Window(Frame):
         abtn = Button(self, text="Activate", command=scan_computer_programs)
         abtn.grid(row=1, column=5, sticky=E)
 
-        sbtn = Button(self, text="Stop", command=lambda: stop_running(area, threads["procs"]))
+        sbtn = Button(self, text="Stop", command=lambda: stop_running())
         sbtn.grid(row=2, column=5, pady=6, sticky=E)
 
         cbtn = Button(self, text="Close", command=quit)
@@ -185,7 +187,6 @@ class Window(Frame):
         obtn = Button(self, text="start", command=lambda: call_running(area, threads["procs"], check_box))
         obtn.grid(row=6, column=5, sticky=E)
 
-
     def initUI_err(self):
         self.parent.title("Personal Helper")
         self.pack(fill=BOTH, expand=True)
@@ -196,7 +197,6 @@ class Window(Frame):
             self.boost_drop.current(0)
         except:
             self.boost_drop.set("empty")
-
 
     def update_blocked(self):
         self.block_drop['values'] = working_bans
@@ -211,7 +211,6 @@ class Window(Frame):
             self.block_drop.current(0)
         except:
             self.block_drop.set("empty")
-
 
     def update_music(self):
         self.music_drop['values'] = music_list.keys()
@@ -246,7 +245,6 @@ def main1():
     main_window.mainloop()
 
 
-
 def main():
     root.geometry("700x300+200+200")
     root.iconbitmap(os.path.abspath(os.curdir + "\Assets\Alien_robot.ico"))
@@ -274,7 +272,7 @@ def scan_computer_programs():
             print "need admin"
 
 
-def stop_running(area, threadP):
+def stop_running():
     global run_cond
     run_cond = False
     threads["procs"] = "empty"
@@ -298,15 +296,14 @@ def running_programs(area, check_box):  # (add working):  #working is that the u
         for line in proc.stdout:
             try:
                 proc_vals = str(line).split(" ")
-                if proc_vals[0] in system_process:
+                if proc_vals[0] in system_process: #old version of procmon from here
                     tag = "sys"
                 if line != "":
                     area.insert("", 0, None, values=(line), tags = (tag,))
             except Exception as e:
                 print e
+            #### Until here
 
-
-            #proc_vals = str(line).split(" ")
             if proc_vals[0] not in process.keys():
                 print proc_vals[0]
                 process[proc_vals[0]] = proc_vals[1:]
@@ -319,7 +316,6 @@ def running_programs(area, check_box):  # (add working):  #working is that the u
         #checking if working status is on and defusing processes if necessary
         if check_box["work"].get() == 1:
             for key in process.keys():
-                #print 'Taskkill /IM ' + key + ' /F'
                 if key in working_bans:
                     print "killing ", key
                     cmd = 'Taskkill /IM ' + key + ' /F'
@@ -332,17 +328,16 @@ def running_programs(area, check_box):  # (add working):  #working is that the u
             for proc in boosted:
                 pids = get_pid(proc)
                 set_priority(pids)
-                print "wow!"
+                print "boosting!"
             for proc in degraded:
                 pids = get_pid(proc)
                 set_priority(pids, 0)
 
 
 
-        print check_box["boost"].get()
-        print check_box["work"].get()
+        print "Updated"
         time.sleep(10)
-        area.delete(*area.get_children())
+        #area.delete(*area.get_children())  #old version stuff, may proof useful
 
 
 def get_pid(name):
@@ -352,10 +347,11 @@ def get_pid(name):
             pids.append(proc.pid)
     return pids
 
-#in dev - must choose how to use
+
+#sets priority of processes
 def set_priority(pids, priority=3):
     """ Set The Priority of a Windows Process.  Priority is a value between 0-5 where
-        2 is normal priority.  Default sets the priority of the current
+        2 is normal priority (There for 3 is the default value.  Default sets the priority of the current
         python process but can take any valid process ID. """
 
     priority_classes = [win32process.IDLE_PRIORITY_CLASS,
@@ -370,6 +366,7 @@ def set_priority(pids, priority=3):
         win32process.SetPriorityClass(handle, priority_classes[priority])
 
 
+# is not available yet, will play music in the future while in work mode
 def play_music(url):
     webbrowser.open(url, 0, autoraise=False)
     time.sleep(0.1)
@@ -377,6 +374,7 @@ def play_music(url):
     pyautogui.keyDown("Tab")
     pyautogui.keyUp("Alt")
     pyautogui.keyUp("Tab")
+    #will work with z index and top window in the future
 
 #will prevent cmd from popping up with ProcMon
 def launch_Without_Console(command, args):
@@ -411,6 +409,7 @@ def add_to_list(list, item, entry, defult):
         tkMessageBox.showerror("error", "already in the list "+item)
         print item
 
+
 def add_music(dic, item_name, item_url,entery, defult):
     if item_name not in dic.keys():
         dic[item_name] = item_url
@@ -418,7 +417,6 @@ def add_music(dic, item_name, item_url,entery, defult):
         entery.insert(0, defult)
     else:
         tkMessageBox.showerror("error", item_name+" is already in the list ")
-
 
 
 def save_lists():

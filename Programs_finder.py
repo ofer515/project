@@ -10,7 +10,6 @@ import tkMessageBox
 def main():
 
     new_file = open('Data/programs_list.log', 'w')
-
     errorLog = open('Data/errors.log', 'w')
     displies = open('Data/displayList.log', 'w')
     r = wmi.Registry()
@@ -51,6 +50,7 @@ def main():
     print len(names)
     new_file.close()
     errorLog.close()
+    displies.close()
     tkMessageBox.showinfo("Error", "Done scanning")
 
 if __name__ == "__main__":
